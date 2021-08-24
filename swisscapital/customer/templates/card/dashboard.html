@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+{% include "layout.html" %}
+{% include "navbar.html" %}
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            {% for key, value in data.items() %}
+                {% if value is string %}
+                    ['{{ key }}', '{{ value }}'],
+                {% else %}
+                    ['{{ key }}', {{ value }}],
+                {% endif %}
+            {% endfor %}
+        ]);
+ 
+        var options = {
+          title: '',
+          is3D: true,
+          //pieHole: 0.5
+          pieStartAngle: 100
+          /*slices: {  
+            2: {offset: 0.2},
+            3: {offset: 0.3}
+          }*/
+          /*slices: {
+            1: { color: 'transparent' }
+          }*/
+        };
+ 
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript">
+          google.charts.load("current", {packages:["corechart"]});
+          google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data_feature = google.visualization.arrayToDataTable([
+                {% for key, value in data_feature.items() %}
+                    {% if value is string %}
+                        ['{{ key }}', '{{ value }}'],
+                    {% else %}
+                        ['{{ key }}', {{ value }}],
+                    {% endif %}
+                {% endfor %}
+            ]);
+     
+            var options = {
+              title: '',
+              is3D: true,
+              //pieHole: 0.5
+              pieStartAngle: 100
+              /*slices: {  
+                2: {offset: 0.2},
+                3: {offset: 0.3}
+              }*/
+              /*slices: {
+                1: { color: 'transparent' }
+              }*/
+            };
+     
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d1'));
+            chart.draw(data_feature, options);
+          }
+        </script>
+</head>
+<body>
+<div class="content">
+    <div id="your-id" class="box">
+      <div class="box-content">
+            <h5>Analysis of customer departments</h5> 
+            <p id="your-id">Total department:{{total_departments}} </p>
+            <p id="your-id">Total users:{{total_users}} </p>
+
+         <div id="piechart_3d" style="width: 700px; height: 500px;"></div>
+      </div>
+    </div>
+</div>
+
+<div class="content">
+    <div id="your-id" class="box">
+      <div class="box-content">
+            <h5>Analysis of customer features</h5>
+            <p id="your-id">Total feature:{{total_features}} </p>
+            <p id="your-id">Total users:{{total_users}} </p>
+         <div id="piechart_3d1" style="width: 700px; height: 500px;"></div>
+      </div>
+    </div>
+</div>
+
+</body>
+</html>

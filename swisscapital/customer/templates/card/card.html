@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href = "{{url_for('static',filename='css/card.css', _external=True) }}" rel="stylesheet">
+    <title>
+        Identity Card 
+    </title>
+</head>
+ 
+<body>
+    <div class="card ">
+        <img src="http://localhost:5000/static/images/{{users.profile}}" alt=""  style=" width: 200px;height:200px;border: 5px solid #e1e1e1;border-radius: 50%;" >
+        <h1>{{users.department}} department</h1>
+ 
+        <table>
+            <tr>
+                <td><strong>FIRST NAME</strong></td>
+                <td>{{users.first_name}}</td>
+            </tr>
+            <tr>
+                <td><strong>LAST NAME</strong></td>
+                <td>{{users.last_name}}</td>
+            </tr>
+            <tr>
+                <td><strong>CIT</strong></td>
+                <td>{{users.cit}}</td>
+            </tr>
+            <tr>
+                <td><strong>GENDER</strong></td>
+                <td>{{users.gender}}</td>
+            </tr>
+            <tr>
+                <td><strong>PERSONAL NO</strong></td>
+                <td>{{users.personal_no}}</td>
+            </tr>
+            <tr>
+                <td><strong>BIRTHDATE</strong></td>
+                <td>{{users.birth_of_date.strftime('%Y-%m-%d')}}</td>
+            </tr> <tr>
+                <td><strong>DATE OF EXSPIRY </strong></td>
+                <td>{{users.date_of_exspiry.strftime('%Y-%m-%d')}}</td>
+            </tr> <tr>
+                <td><strong>CARD NO</strong></td>
+                <td>{{users.card_no}}</td>
+            </tr> <tr>
+                <td><strong>PLACE OF BIRTH</strong></td>
+                <td>{{users.place_of_birth}}</td>
+            </tr> <tr>
+                <td><strong>DATE OF ISSUE</strong></td>
+                <td>{{users.date_of_issue.strftime('%Y-%m-%d')}}</td>
+            </tr> <tr>
+                <td><strong>ISSUING AUTHORITY</strong></td>
+                <td>{{users.issuing_autority}}</td>
+            </tr>
+              <tr>
+                <td><strong>SIGNATURE</strong></td>
+                <td>        <img src="http://localhost:5000/static/images/{{users.signature}}" alt=""  style=" width: 250px;height:150px;border: 5px solid #e1e1e1;" >
+                </td>
+            </tr> 
+        </table>
+        <h1>HUMAN FEATURE:</h1>
+        <h1>{{users.feature}}</h1>
+    </div>
+</body>
+ 
+</html>
+
+

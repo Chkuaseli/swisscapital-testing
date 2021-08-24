@@ -1,0 +1,124 @@
+{% extends 'layout.html' %}
+{% include 'navbar.html' %}
+
+{% block content %}
+{% include "_messages.html" %}
+{% include "search.html" %}
+<div class="d-flex justify-content-center mt-5">
+<a href="{{url_for('CardRegister')}}">    
+    <button style="float: right;font-weight: 700;" class="btn btn-outline-success btn_my"> Add Card<i class="fas fa-plus" ></i> </button>
+ </a>
+ </div>
+<div class="container d-flex justify-content-center  mt-1">
+    
+    <div class="table-responsive-lg">
+    <table class="table table-lg table-condensed table-striped table-hover">
+        <thead>
+            <th>Sr</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Cit</th>
+            <th>Gender</th>
+            <th>Person No</th>
+            <th>Birthdate</th>
+            <!-- <th>Date Expiry</th> -->
+            <th>Card No</th>
+            <!-- <th>Place of birth</th>
+            <th>Date of issue</th>
+            <th>Issuing aotority</th> -->
+            <th>Department</th>
+            <th>Feature</th>
+            <!-- <th>Signature</th> -->
+            <th>Picture</th>
+            <th>Download detail </th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+           
+            {% for user in users.items %}
+
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{user.first_name}}</td>
+                <td>{{user.last_name}}</td>
+                <td>{{user.cit}}</td>
+                <td>{{user.gender}}</td>
+                <td>{{user.personal_no}}</td>
+                <td>{{user.birth_of_date.strftime('%Y-%m-%d')}}</td>
+                <!-- <td>{{user.date_of_exspiry}}</td> -->
+                <td>{{user.card_no}}</td>
+                <!-- <td>{{user.place_of_birth}}</td> -->
+                <!-- <td>{{user.date_of_issue}}</td>
+                <td>{{user.issuing_autority}}</td> -->
+                <td>{{user.department}}</td>
+                <td>{{user.feature}}</td>
+                <!-- <td><img class="pic-1" style="width: 150px;height: auto;" src="{{url_for('static', filename='images/' + user.signature)}}"></td> -->
+                <td><img class="pic-1" style="width: 150px;height: auto;" src="{{url_for('static', filename='images/' + user.profile)}}"></td>
+                <form action="{{ url_for('card', id=user.id) }}" method="POST" enctype="multipart/form-data">
+                    <td> <button type="submit" class="btn btn-outline-success btn-sm" id="veiw"> download </button></td>
+                </form>
+                
+                <td><a href="{{ url_for('update_card', id=user.id) }}" class="btn btn-sm btn-outline-info" >Edit</a></td>
+                  <!-- <a href=""class="btn btn-sm btn-outline-danger">Delete</a> -->
+                  <!-- Button trigger modal -->
+                  <td><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal-{{user.id}}" >
+                   Delete
+                  </button>
+
+                </td>
+            </tr>
+
+      <!-- Modal delete -->
+      <div class="modal fade" data-target="#exampleModal-{{user.id}}" id="exampleModal-{{user.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
+      aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel-{{user.id}}">{{user.name}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <span class="text-danger">are you sure you wont to delete Card..{{user.first_name}} PN {{user.personal_no}} </span>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Cancel</button>
+              <form action="{{url_for('delete_card', id=user.id)}}" method="POST" > 
+              <button type="submit" class="btn btn-danger btm-sm">Delete</button>
+          </form>
+          </div>
+          </div>
+      </div>
+      <!-- end delete modal -->
+            {% endfor %}
+
+        </tbody>
+    </table>
+    </div> 
+</div>
+<div class="row">
+    <div class="col text-center">
+        {% if users.has_prev %}
+        <a href="{{url_for('card_dashboard',page = users.prev_num)}}" class="btn btn-info btn-sm mt-3">Previous</a>
+        {% endif %}
+        {% for page_num in users.iter_pages() %}
+        {% if page_num %}
+        {% if users.page == page_num %}
+        <a href="{{url_for('card_dashboard',page = page_num)}}" class="btn btn-info btn-sm mt-3">{{page_num}}</a>
+        {% else %}
+        <a href="{{url_for('card_dashboard',page = page_num)}}" class="btn btn-outline-info btn-sm mt-3">{{page_num}}</a>
+        {% endif %}
+        {% else %}
+        ...
+        {% endif %}
+        {% endfor %}
+        {% if users.has_next %}
+        <a href="{{url_for('card_dashboard',page = users.next_num)}}" class="btn btn-info btn-sm mt-3">Next</a>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock content %}

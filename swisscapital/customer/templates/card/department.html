@@ -1,0 +1,111 @@
+
+{% extends 'layout.html' %}
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+{% include 'navbar.html' %}
+<div class="container mt-5">
+    <table class="table table-sm table-condensed table-striped table-hover">
+        <thead>
+            <th>Sr</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            {% if department %}
+            <a href="{{url_for('add_department')}}">    
+              <button style="float: right;font-weight: 700;" class="btn btn-outline-success btn_my"> add department<i class="fas fa-plus" ></i> </button>
+           </a>
+            {% for dep in department %}
+
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{dep.department}}</td>
+                <td>{{dep.description}}</td>
+                <td><a href="{{url_for('update_department', id=dep.id)}}" class="btn btn-sm btn-outline-info">Edit</a></td>
+                <td>
+                  <!-- <a href=""class="btn btn-sm btn-outline-danger">Delete</a> -->
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal-{{dep.id}}">
+                   Delete
+                  </button>
+
+                </td>
+            </tr>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal-{{dep.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel-{{dep.id}}">{{dep.name}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span class="text-danger">are you sure you wont to delete department..{{dep.name}}</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Cancel</button>
+                    <form action="{{url_for('delete_department', id=dep.id)}}" method="POST" > 
+                    <button type="submit" class="btn btn-danger btm-sm">Delete</button>
+                </form>
+                </div>
+                </div>
+            </div>
+            </div>
+            {% endfor %}
+
+            {% else %}
+            <a href="{{url_for('add_humanfeature')}}">    
+                <button style="float: right;font-weight: 700;" class="btn btn-outline-success btn_my "> add human feature<i class="fas fa-plus" ></i> </button>
+             </a>
+              {% for feature in features %}
+  
+              <tr>
+                  <td>{{loop.index}}</td>
+                  <td>{{feature.feature}}</td>
+                  <td>{{feature.description}}</td>
+                  <td><a href="{{url_for('update_feature', id=feature.id)}}" class="btn btn-sm btn-outline-info">Edit</a></td>
+                  <td>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal-{{feature.id}}">
+                      Delete
+                     </button>
+  
+                  </td>
+              </tr>
+               <!-- Modal -->
+            <div class="modal fade" id="exampleModal-{{feature.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
+            aria-hidden="true"> 
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel-{{feature.id}}">{{feature.name}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                    <span class="text-danger">are you sure you wont to delete this human feature..{{feature.feature}}</span>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Cancel</button>
+                    <form action="{{url_for('delete_feature',id=feature.id)}}" method="POST" > 
+                    <button type="submit" class="btn btn-danger btm-sm">Delete</button>
+                    </form>
+                    </div>
+                </div>
+                </div>
+            </div>
+  
+              {% endfor %}
+              {% endif %}
+          </tbody>
+      </table>
+  </div>
+  
+{% endblock content %}
