@@ -28,5 +28,5 @@ Card განახლება:
  
   Project demonstration on Heroku server:
   >>>  https://swisscapital.herokuapp.com   <<< 
-  ეს პროექტი არის დაჰოსტილი უბრალოდ სვა რეპოზიტორიიდან:
+  ეს პროექტი არის დაჰოსტილი უბრალოდ სვა რეპოზიტორია არის გამოყენებული:
   >>>>>https://github.com/Chkuaseli/heroku<<<<<<
