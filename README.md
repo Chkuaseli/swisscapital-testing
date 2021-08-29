@@ -26,7 +26,9 @@ Card განახლება:
    
  Database: Postgres
  
-  Project demonstration on Heroku server:
+  დემო:
   >>>  https://swisscapital.herokuapp.com   <<< 
-  ეს პროექტი არის დაჰოსტილი უბრალოდ სვა რეპოზიტორია არის გამოყენებული:
-  >>>>>https://github.com/Chkuaseli/heroku<<<<<<
+
+
+  ეს პროექტი არის დაჰოსტილი ჰროკუზე უბრალოდ სვა რეპოზიტორია არის გამოყენებული:
+  >>>>> https://github.com/Chkuaseli/heroku <<<<<<
