@@ -31,4 +31,4 @@ Card განახლება:
 
 
   ეს პროექტი არის დაჰოსტილი ჰროკუზე უბრალოდ სვა რეპოზიტორია არის გამოყენებული:
-  >>>>> https://github.com/Chkuaseli/heroku <<<<<<
+  >>> https://github.com/Chkuaseli/heroku <<<
