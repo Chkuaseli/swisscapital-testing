@@ -13,3 +13,8 @@ EDIT:
      # card = User.query.filter_by(card_no = card_no.data).first()
         # if card != current_user.user.card_no:
         #     raise ValidationError('This Card ID already exist! 2')
+        
+        
+        
+ Project demonstracion on heroku server:
+ >>>  https://swisscapital.herokuapp.com   <<<
