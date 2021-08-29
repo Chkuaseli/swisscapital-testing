@@ -26,5 +26,5 @@ Card განახლება:
    
  Database: Postgres
  
-                                        Project demonstration on Heroku server:
-                                        >>>  https://swisscapital.herokuapp.com   <<< 
+  Project demonstration on Heroku server:
+  >>>  https://swisscapital.herokuapp.com   <<< 
